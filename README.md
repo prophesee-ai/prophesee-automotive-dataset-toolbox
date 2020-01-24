@@ -1,6 +1,6 @@
 # Prophesee's Automotive Dataset Toolbox
 
-<!-- [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)  -->
+[![Prophesee Automotive Dataset](media/ATIS-Automotive-detection-dataset-thumbnail.jpg)](https://www.youtube.com/watch?v=VJ7VSUqFvVE&feature=youtu.be) 
 
 This repository contains a set of Python scripts to evaluate the Automotive Datasets provided by Prophesee.
 
