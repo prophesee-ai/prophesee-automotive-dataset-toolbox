@@ -26,11 +26,11 @@ def make_binary_histo(events, img=None, width=304, height=240):
     else:
         # if an array was already allocated just paint it grey
         img[...] = 127
+    if events.size:
+        assert events['x'].max() < width, "out of bound events: x = {}, w = {}".format(events['x'].max(), width)
+        assert events['y'].max() < height, "out of bound events: y = {}, h = {}".format(events['y'].max(), height)
 
-    assert events['x'].max() < width, "out of bound events: x = {}, w = {}".format(events['x'].max(), width)
-    assert events['y'].max() < height, "out of bound events: y = {}, h = {}".format(events['y'].max(), height)
-
-    img[events['y'], events['x'], :] = 255 * events['p'][:, None]
+        img[events['y'], events['x'], :] = 255 * events['p'][:, None]
     return img
 
 
