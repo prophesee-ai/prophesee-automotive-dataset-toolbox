@@ -49,7 +49,7 @@ Now you can start by running a baseline either by looking into [the last results
 
 ### DISCLAIMER: New Dataset! 
 
-To account for the new 1 Megapixel Dataset described in our recently accepted NeurIPS submission: "Learning to detect 1 Megapixel Event Camera", the format has slightly changed. 
+To account for the new 1 Megapixel Dataset described in our recently accepted NeurIPS submission: "Learning to Detect Objects with a 1 Megapixel Event Camera" by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci and Amos Sironi, the format has slightly changed. 
 Essentially `ts` has been renamed `t` in events and box events, alongside `confidence` is now `class_confidence`
 Also now, for comparison with our result inside this paper, you need to filter too small boxes and boxes appearing before 0.5s inside each recording. We provide such function
 as following example will show.

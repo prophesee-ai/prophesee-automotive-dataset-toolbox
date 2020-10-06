@@ -20,7 +20,6 @@ def evaluate_folders(dt_folder, gt_folder):
     result_boxes_list = [reformat_boxes(p) for p in result_boxes_list]
     gt_boxes_list = [reformat_boxes(p) for p in gt_boxes_list]
 
-
     gt_boxes_list = map(filter_boxes, gt_boxes_list)
     result_boxes_list = map(filter_boxes, result_boxes_list)
     evaluate_detection(gt_boxes_list, result_boxes_list)
