@@ -13,7 +13,7 @@ import sys
 import datetime
 import numpy as np
 
-EV_TYPE = [('ts', 'u4'), ('_', 'i4')]  # Event2D
+EV_TYPE = [('t', 'u4'), ('_', 'i4')]  # Event2D
 
 EV_STRING = 'Event2D'
 
@@ -90,7 +90,7 @@ def stream_td_data(file_handle, buffer, dtype, ev_count=-1):
     """
 
     dat = np.fromfile(file_handle, dtype=dtype, count=ev_count)
-    count = len(dat['ts'])
+    count = len(dat['t'])
     for name, _ in dtype:
         if name == '_':
             buffer['x'][:count] = np.bitwise_and(dat["_"], 16383)
@@ -205,7 +205,7 @@ def write_event_buffer(f, buffers):
     """
     # pack data as events
     dtype = EV_TYPE
-    data_to_write = np.empty(len(buffers['ts']), dtype=dtype)
+    data_to_write = np.empty(len(buffers['t']), dtype=dtype)
 
     for (name, typ) in buffers.dtype.fields.items():
         if name == 'x':

@@ -18,7 +18,7 @@ def filter_boxes(boxes, skip_ts=int(1e5), min_box_diag=30, min_box_side=10):
     Args:
         boxes (np.ndarray): structured box array with fields "ts" or "t"
     """
-    ts = boxes['ts'] if 'ts' in boxes.dtype.names ele boxes['t']
+    ts = boxes['t'] 
     width = boxes['w']
     height = boxes['h']
     diag = width**2+height**2
