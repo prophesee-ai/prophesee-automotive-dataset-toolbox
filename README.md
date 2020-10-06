@@ -46,11 +46,19 @@ Now you can start by running a baseline either by looking into [the last results
 
 ## Evaluation using the COCO API
 
+
+### DISCLAIMER: New Dataset! 
+
+To account for the new 1 Megapixel Dataset described in NeurIPS submission: "Learning to detect 1 Megapixel Event Camera", the format has slightly changed. 
+Essentially 'ts' has been renamed 't' in events and box events, alongside 'confidence' is now `class_confidence`
+
+
 If you install the [API from COCO](https://github.com/cocodataset/cocoapi) you can use the provided helper function in `metrics` to get mean average precision metrics.
 This is an usage example if you saved your detection results in the same format as the Ground Truth:
 ```python
 import numpy as np
 from src.metrics.coco_eval import evaluate_detection
+from src.io.box_loading import reformat_boxes
 
 RESULT_FILE_PATHS = ["file1_results_bbox.npy", "file2_results_bbox.npy"]
 GT_FILE_PATHS = ["file1_bbox.npy", "file2_bbox.npy"]
@@ -58,13 +66,13 @@ GT_FILE_PATHS = ["file1_bbox.npy", "file2_bbox.npy"]
 result_boxes_list = [np.load(p) for p in RESULT_FILE_PATHS]
 gt_boxes_list = [np.load(p) for p in GT_FILE_PATHS]
 
+# The following is necessary if you use the old format
+result_boxes_list = [reformat_boxes(p) for p in result_boxes_list]
+gt_boxes_list = [reformat_boxes(p) for p in gt_boxes_list]
+
 evaluate_detection(gt_boxes_list, result_boxes_list)
 ```
 
-To account for the new 1 Mpix Dataset following "Learning to detect 1 Megapixel Event Camera", the format has slightly changed. 
-Essentially 'ts' has been 't' in events and box events, alongside 'confidence' is now `class_confidence`
-There is an example at `src/psee_evaluator.py`
-Everything is backward compatible. If you use `np.load(boxes_path)` you need to call `reformat_boxes` defined in `src/io/npy_event_tools.py`.
 
 
 ## Contacts
