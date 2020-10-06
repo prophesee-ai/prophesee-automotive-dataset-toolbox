@@ -31,10 +31,10 @@ def evaluate_detection(gt_boxes_list, dt_boxes_list, classes=("car", "pedestrian
     flattened_dt = []
     for gt_boxes, dt_boxes in zip(gt_boxes_list, dt_boxes_list):
 
-        assert np.all(gt_boxes['ts'][1:] >= gt_boxes['ts'][:-1])
-        assert np.all(dt_boxes['ts'][1:] >= dt_boxes['ts'][:-1])
+        assert np.all(gt_boxes['t'][1:] >= gt_boxes['t'][:-1])
+        assert np.all(dt_boxes['t'][1:] >= dt_boxes['t'][:-1])
 
-        all_ts = np.unique(gt_boxes['ts'])
+        all_ts = np.unique(gt_boxes['t'])
         n_steps = len(all_ts)
 
         gt_win, dt_win = _match_times(all_ts, gt_boxes, dt_boxes, time_tol)
@@ -59,21 +59,21 @@ def _match_times(all_ts, gt_boxes, dt_boxes, time_tol):
     low_dt, high_dt = 0, 0
     for ts in all_ts:
 
-        while low_gt < gt_size and gt_boxes[low_gt]['ts'] < ts:
+        while low_gt < gt_size and gt_boxes[low_gt]['t'] < ts:
             low_gt += 1
         # the high index is at least as big as the low one
         high_gt = max(low_gt, high_gt)
-        while high_gt < gt_size and gt_boxes[high_gt]['ts'] <= ts:
+        while high_gt < gt_size and gt_boxes[high_gt]['t'] <= ts:
             high_gt += 1
 
         # detection are allowed to be inside a window around the right detection timestamp
         low = ts - time_tol
         high = ts + time_tol
-        while low_dt < dt_size and dt_boxes[low_dt]["ts"] < low:
+        while low_dt < dt_size and dt_boxes[low_dt]['t'] < low:
             low_dt += 1
         # the high index is at least as big as the low one
         high_dt = max(low_dt, high_dt)
-        while high_dt < dt_size and dt_boxes[high_dt]['ts'] <= high:
+        while high_dt < dt_size and dt_boxes[high_dt]['t'] <= high:
             high_dt += 1
 
         windowed_gt.append(gt_boxes[low_gt:high_gt])
@@ -148,7 +148,7 @@ def _to_coco_format(gts, detections, categories, height=240, width=304):
             image_result = {
                 'image_id': im_id,
                 'category_id': int(bbox['class_id']) + 1,
-                'score': float(bbox['confidence']),
+                'score': float(bbox['class_confidence']),
                 'bbox': [bbox['x'], bbox['y'], bbox['w'], bbox['h']],
             }
             results.append(image_result)

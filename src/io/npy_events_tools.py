@@ -52,6 +52,10 @@ def parse_header(fhandle):
     start = fhandle.tell()
     # turn numpy.dtype into an iterable list
     ev_type = [(x, str(dtype.fields[x][0])) for x in dtype.names]
+    # filter name to have only t and not ts
+    ev_type = [(name if name != "ts" else "t", desc) for name, desc in ev_type]
+    ev_type = [(name if name != "confidence" else "class_confidence", desc) for name, desc in ev_type]
+    size = (None, None)
     size = (None, None)
 
     return start, ev_type, ev_size, size
