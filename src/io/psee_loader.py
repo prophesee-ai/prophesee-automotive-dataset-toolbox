@@ -104,10 +104,10 @@ class PSEELoader(object):
             self.done = True
             ev_count = count
             self._binary_format.stream_td_data(self._file, event_buffer, self._dtype, ev_count)
-            self.current_time = event_buffer['ts'][ev_count - 1] + 1
+            self.current_time = event_buffer['t'][ev_count - 1] + 1
         else:
             self._binary_format.stream_td_data(self._file, event_buffer, self._dtype, ev_count + 1)
-            self.current_time = event_buffer['ts'][ev_count]
+            self.current_time = event_buffer['t'][ev_count]
             self._file.seek(pos + ev_count * self._ev_size)
 
         return event_buffer[:ev_count]
@@ -148,7 +148,7 @@ class PSEELoader(object):
         else:
             self.current_time = tmp_time + 1
         assert len(event_buffer) > 0
-        idx = np.searchsorted(event_buffer[-1]['ts'], final_time)
+        idx = np.searchsorted(event_buffer[-1]['t'], final_time)
         event_buffer[-1] = event_buffer[-1][:idx]
         event_buffer = np.concatenate(event_buffer)
         idx = len(event_buffer)
@@ -237,7 +237,7 @@ class PSEELoader(object):
         done = self.done
         # read the last event's timestamp
         self.seek_event(self._ev_count - 1)
-        time = np.fromfile(self._file, dtype=self._dtype, count=1)['ts'][0]
+        time = np.fromfile(self._file, dtype=self._dtype, count=1)['t'][0]
         # restore the state
         self._file.seek(pos)
         self.current_time = current_time

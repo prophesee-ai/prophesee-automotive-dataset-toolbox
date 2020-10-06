@@ -60,6 +60,13 @@ gt_boxes_list = [np.load(p) for p in GT_FILE_PATHS]
 
 evaluate_detection(gt_boxes_list, result_boxes_list)
 ```
+
+To account for the new 1 Mpix Dataset following "Learning to detect 1 Megapixel Event Camera", the format has slightly changed. 
+Essentially 'ts' has been 't' in events and box events, alongside 'confidence' is now `class_confidence`
+There is an example at `src/psee_evaluator.py`
+Everything is backward compatible. If you use `np.load(boxes_path)` you need to call `reformat_boxes` defined in `src/io/npy_event_tools.py`.
+
+
 ## Contacts
 The code is open to contributions, so do not hesitate to ask questions, propose pull requests or create bug reports.
 For any other information or inquiries, contact us [here](https://www.prophesee.ai/contact-us/)
