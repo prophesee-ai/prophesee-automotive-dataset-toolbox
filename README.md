@@ -49,8 +49,8 @@ Now you can start by running a baseline either by looking into [the last results
 
 ### DISCLAIMER: New Dataset! 
 
-To account for the new 1 Megapixel Dataset described in NeurIPS submission: "Learning to detect 1 Megapixel Event Camera", the format has slightly changed. 
-Essentially 'ts' has been renamed 't' in events and box events, alongside 'confidence' is now `class_confidence`
+To account for the new 1 Megapixel Dataset described in our recently accepted NeurIPS submission: "Learning to detect 1 Megapixel Event Camera", the format has slightly changed. 
+Essentially `ts` has been renamed `t` in events and box events, alongside `confidence` is now `class_confidence`
 
 
 If you install the [API from COCO](https://github.com/cocodataset/cocoapi) you can use the provided helper function in `metrics` to get mean average precision metrics.
