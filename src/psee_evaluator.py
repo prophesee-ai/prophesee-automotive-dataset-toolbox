@@ -23,10 +23,10 @@ def evaluate_folders(dt_folder, gt_folder, camera):
     min_box_diag = 60 if camera == 'GEN4' else 30
     min_box_side = 20 if camera == 'GEN1' else 10
 
-    filter_fn = lambda x:filter_boxes(x, int(1e5), min_box_diag, min_box_side)
+    filter_boxes_fn = lambda x:filter_boxes(x, int(1e5), min_box_diag, min_box_side)
 
-    gt_boxes_list = map(filter_boxes, gt_boxes_list)
-    result_boxes_list = map(filter_boxes, result_boxes_list)
+    gt_boxes_list = map(filter_boxes_fn, gt_boxes_list)
+    result_boxes_list = map(filter_boxes_fn, result_boxes_list)
     evaluate_detection(gt_boxes_list, result_boxes_list)
 
 

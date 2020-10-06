@@ -21,7 +21,11 @@ def filter_boxes(boxes, skip_ts=int(5e5), min_box_diag=30, min_box_side=10):
     To note: we assume the initial time of the video is always 0
 
     Args:
-        boxes (np.ndarray): structured box array with fields "ts" or "t"
+        boxes (np.ndarray): structured box array with fields ['t','x','y','w','h','class_id','track_id','class_confidence'] 
+        (example BBOX_DTYPE is provided in src/box_loading.py)
+
+    Returns:
+        boxes: filtered boxes
     """
     ts = boxes['t'] 
     width = boxes['w']
