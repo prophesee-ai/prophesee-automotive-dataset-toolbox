@@ -51,6 +51,8 @@ Now you can start by running a baseline either by looking into [the last results
 
 To account for the new 1 Megapixel Dataset described in our recently accepted NeurIPS submission: "Learning to detect 1 Megapixel Event Camera", the format has slightly changed. 
 Essentially `ts` has been renamed `t` in events and box events, alongside `confidence` is now `class_confidence`
+Also now, for comparison with our result inside this paper, you need to filter too small boxes and boxes appearing before 0.5s inside each recording. We provide such function
+as following example will show.
 
 
 If you install the [API from COCO](https://github.com/cocodataset/cocoapi) you can use the provided helper function in `metrics` to get mean average precision metrics.
@@ -66,9 +68,13 @@ GT_FILE_PATHS = ["file1_bbox.npy", "file2_bbox.npy"]
 result_boxes_list = [np.load(p) for p in RESULT_FILE_PATHS]
 gt_boxes_list = [np.load(p) for p in GT_FILE_PATHS]
 
-# The following is necessary if you use the old format
+# For backward-compatibility
 result_boxes_list = [reformat_boxes(p) for p in result_boxes_list]
 gt_boxes_list = [reformat_boxes(p) for p in gt_boxes_list]
+
+# For fair comparison with paper results
+gt_boxes_list = map(filter_boxes, gt_boxes_list)
+result_boxes_list = map(filter_boxes, result_boxes_list)
 
 evaluate_detection(gt_boxes_list, result_boxes_list)
 ```
