@@ -20,8 +20,8 @@ def evaluate_folders(dt_folder, gt_folder, camera):
     result_boxes_list = [reformat_boxes(p) for p in result_boxes_list]
     gt_boxes_list = [reformat_boxes(p) for p in gt_boxes_list]
 
-    min_box_diag = 60 if camera == 'MOOREA' else 30
-    min_box_side = 20 if camera == 'ATIS' else 10
+    min_box_diag = 60 if camera == 'GEN4' else 30
+    min_box_side = 20 if camera == 'GEN1' else 10
 
     filter_fn = lambda x:filter_boxes(x, int(1e5), min_box_diag, min_box_side)
 
@@ -35,7 +35,7 @@ def main():
     parser = argparse.ArgumentParser(prog='psee_evaluator.py')
     parser.add_argument('gt_folder', type=str, help='GT folder containing .npy files')
     parser.add_argument('dt_folder', type=str, help='RESULT folder containing .npy files')
-    parser.add_argument('--camera', type=str, default='MOOREA', help='ATIS (QVGA) or MOOREA (720p)')
+    parser.add_argument('--camera', type=str, default='GEN2', help='GEN1 (QVGA) or GEN4 (720p)')
     opt = parser.parse_args()
     evaluate_folders(opt.dt_folder, opt.gt_folder, opt.camera)
 
