@@ -78,7 +78,7 @@ result_boxes_list = map(filter_boxes, result_boxes_list)
 
 evaluate_detection(gt_boxes_list, result_boxes_list)
 ```
-
+We provide a complete evaluator at `src/psee_evaluator.py`. Note that box filtering uses a diagonal threshold different for the 1 megapixel camera and for the qvga one (60 and 30).
 
 
 ## Contacts

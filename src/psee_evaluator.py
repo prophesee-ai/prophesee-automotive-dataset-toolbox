@@ -9,7 +9,7 @@ from src.io.box_loading import reformat_boxes
 
         
 
-def evaluate_folders(dt_folder, gt_folder):
+def evaluate_folders(dt_folder, gt_folder, camera):
     dt_file_paths = sorted(glob.glob(dt_folder+'/*'))
     gt_file_paths = sorted(glob.glob(gt_folder+'/*'))
     assert len(dt_file_paths) == len(gt_file_paths)
@@ -19,6 +19,11 @@ def evaluate_folders(dt_folder, gt_folder):
 
     result_boxes_list = [reformat_boxes(p) for p in result_boxes_list]
     gt_boxes_list = [reformat_boxes(p) for p in gt_boxes_list]
+
+    min_box_diag = 60 if camera == 'MOOREA' else 30
+    min_box_side = 20 if camera == 'ATIS' else 10
+
+    filter_fn = lambda x:filter_boxes(x, int(1e5), min_box_diag, min_box_side)
 
     gt_boxes_list = map(filter_boxes, gt_boxes_list)
     result_boxes_list = map(filter_boxes, result_boxes_list)
@@ -30,8 +35,9 @@ def main():
     parser = argparse.ArgumentParser(prog='psee_evaluator.py')
     parser.add_argument('gt_folder', type=str, help='GT folder containing .npy files')
     parser.add_argument('dt_folder', type=str, help='RESULT folder containing .npy files')
+    parser.add_argument('--camera', type=str, default='MOOREA', help='ATIS (QVGA) or MOOREA (720p)')
     opt = parser.parse_args()
-    evaluate_folders(opt.dt_folder, opt.gt_folder)
+    evaluate_folders(opt.dt_folder, opt.gt_folder, opt.camera)
 
 if __name__ == '__main__':
     main()
