@@ -35,7 +35,7 @@ def main():
     parser = argparse.ArgumentParser(prog='psee_evaluator.py')
     parser.add_argument('gt_folder', type=str, help='GT folder containing .npy files')
     parser.add_argument('dt_folder', type=str, help='RESULT folder containing .npy files')
-    parser.add_argument('--camera', type=str, default='GEN2', help='GEN1 (QVGA) or GEN4 (720p)')
+    parser.add_argument('--camera', type=str, default='GEN4', help='GEN1 (QVGA) or GEN4 (720p)')
     opt = parser.parse_args()
     evaluate_folders(opt.dt_folder, opt.gt_folder, opt.camera)
 
