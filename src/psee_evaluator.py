@@ -10,8 +10,8 @@ from src.io.box_loading import reformat_boxes
         
 
 def evaluate_folders(dt_folder, gt_folder, camera):
-    dt_file_paths = sorted(glob.glob(dt_folder+'/*'))
-    gt_file_paths = sorted(glob.glob(gt_folder+'/*'))
+    dt_file_paths = sorted(glob.glob(dt_folder+'/*.npy'))
+    gt_file_paths = sorted(glob.glob(gt_folder+'/*.npy'))
     assert len(dt_file_paths) == len(gt_file_paths)
     print("There are {} GT bboxes and {} PRED bboxes".format(len(gt_file_paths), len(dt_file_paths)))
     result_boxes_list = [np.load(p) for p in dt_file_paths]
