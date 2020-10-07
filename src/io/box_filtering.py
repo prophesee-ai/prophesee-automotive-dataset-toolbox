@@ -14,10 +14,10 @@ from __future__ import print_function
 import numpy as np
 
 
-def filter_boxes(boxes, skip_ts=int(5e5), min_box_diag=30, min_box_side=10):
+def filter_boxes(boxes, skip_ts=int(5e5), min_box_diag=60, min_box_side=20):
     """Filters boxes according to the paper rule. 
 
-    To note: the default represents our threshold when evaluating at VGA resolution (640*360)
+    To note: the default represents our threshold when evaluating GEN4 resolution (1280x720)
     To note: we assume the initial time of the video is always 0
 
     Args:
