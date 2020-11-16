@@ -22,7 +22,7 @@ def stream_td_data(file_handle, buffer, dtype, ev_count=-1):
         - ev_count: number of events
     """
     dat = np.fromfile(file_handle, dtype=dtype, count=ev_count)
-    count = len(dat['ts'])
+    count = len(dat['t'])
     for name, _ in dtype:
         buffer[name][:count] = dat[name]
 
