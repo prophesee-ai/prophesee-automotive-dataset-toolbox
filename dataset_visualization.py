@@ -6,11 +6,11 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-
 import math
 import numpy as np
 import cv2
 import argparse
+from glob import glob
 
 from src.visualize import vis_utils as vis
 from src.io.psee_loader import PSEELoader
@@ -18,12 +18,12 @@ from src.io.psee_loader import PSEELoader
 
 def play_files_parallel(td_files, labels=None, delta_t=50000, skip=0):
     """
-    play simultaneously files and their boxes in a rectangular format
+    Plays simultaneously files and their boxes in a rectangular format.
     """
     # open the video object for the input files
     videos = [PSEELoader(td_file) for td_file in td_files]
     # use the naming pattern to find the corresponding box file
-    box_videos = [PSEELoader(td_file.replace('_td.dat', '_bbox.npy')) for td_file in td_files]
+    box_videos = [PSEELoader(glob(td_file.split('_td.dat')[0] +  '*.npy')[0]) for td_file in td_files]
 
     height, width = videos[0].get_size()
 
