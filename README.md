@@ -92,7 +92,7 @@ We provide a complete evaluator at `src/psee_evaluator.py`. Note that box filter
 
 
 ## Credit
-When using those tools in an academic context, please cite the article [" "Learning to Detect Objects with a 1 Megapixel Event Camera" by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci, Amos Sironi, In 34th Conference on Neural Information Processing Systems (NeurIPS) 2020](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf)
+When using those tools in an academic context, please cite the article ["Learning to Detect Objects with a 1 Megapixel Event Camera" by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci, Amos Sironi, In 34th Conference on Neural Information Processing Systems (NeurIPS) 2020](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf)
 
 
 ## Contacts
