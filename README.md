@@ -91,6 +91,10 @@ evaluate_detection(gt_boxes_list, result_boxes_list)
 We provide a complete evaluator at `src/psee_evaluator.py`. Note that box filtering uses a diagonal threshold different for the 1 megapixel camera and for the qvga one (60 and 30).
 
 
+## Credit
+When using those tools in an academic context, please cite the article [" "Learning to Detect Objects with a 1 Megapixel Event Camera" by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci, Amos Sironi, In 34th Conference on Neural Information Processing Systems (NeurIPS) 2020](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf)
+
+
 ## Contacts
 The code is open to contributions, so do not hesitate to ask questions, propose pull requests or create bug reports.
 For any other information or inquiries, contact us [here](https://www.prophesee.ai/contact-us/)
