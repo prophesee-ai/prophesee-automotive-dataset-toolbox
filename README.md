@@ -59,7 +59,7 @@ Now you can start by running a baseline either by looking into [the last results
 
 ### DISCLAIMER: New Dataset! 
 
-To account for the new [1 Megapixel Automotive Detection Dataset](https://www.prophesee.ai/2019/12/18/atis-automotive-detection-dataset/) described in our recently accepted NeurIPS submission: ["Learning to Detect Objects with a 1 Megapixel Event Camera"](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf) by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci and Amos Sironi, the format has slightly changed. 
+To account for the new [1 Megapixel Automotive Detection Dataset](https://www.prophesee.ai/2020/11/24/automotive-megapixel-event-based-dataset/) described in our recently accepted NeurIPS submission: ["Learning to Detect Objects with a 1 Megapixel Event Camera"](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf) by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci and Amos Sironi, the format has slightly changed. 
 Essentially `ts` has been renamed `t` in events and box events, alongside `confidence` is now `class_confidence`
 Also now, for comparison with our result inside this paper, you need to filter too small boxes and boxes appearing before 0.5s inside each recording. We provide such function
 as following example will show.
