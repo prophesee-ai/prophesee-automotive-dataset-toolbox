@@ -7,7 +7,7 @@ import numpy as np
 import cv2
 
 LABELMAP = ["car", "pedestrian"]
-
+LABELMAP_LARGE = ['pedestrian', 'two wheeler', 'car', 'truck', 'bus', 'traffic sign', 'traffic light']
 
 def make_binary_histo(events, img=None, width=304, height=240):
     """

@@ -13,6 +13,7 @@ import argparse
 from glob import glob
 
 from src.visualize import vis_utils as vis
+
 from src.io.psee_loader import PSEELoader
 
 
@@ -26,6 +27,7 @@ def play_files_parallel(td_files, labels=None, delta_t=50000, skip=0):
     box_videos = [PSEELoader(glob(td_file.split('_td.dat')[0] +  '*.npy')[0]) for td_file in td_files]
 
     height, width = videos[0].get_size()
+    labelmap = vis.LABELMAP if height == 240 else vis.LABELMAP_LARGE
 
     # optionally skip n minutes in all videos
     for v in videos + box_videos:
@@ -35,6 +37,7 @@ def play_files_parallel(td_files, labels=None, delta_t=50000, skip=0):
     size_x = int(math.ceil(math.sqrt(len(videos))))
     size_y = int(math.ceil(len(videos) / size_x))
     frame = np.zeros((size_y * height, width * size_x, 3), dtype=np.uint8)
+
     cv2.namedWindow('out', cv2.WINDOW_NORMAL)
 
     # while all videos have something to read
@@ -43,7 +46,6 @@ def play_files_parallel(td_files, labels=None, delta_t=50000, skip=0):
         # load events and boxes from all files
         events = [video.load_delta_t(delta_t) for video in videos]
         box_events = [box_video.load_delta_t(delta_t) for box_video in box_videos]
-
         for index, (evs, boxes) in enumerate(zip(events, box_events)):
             y, x = divmod(index, size_x)
             # put the visualization at the right spot in the grid
@@ -51,7 +53,7 @@ def play_files_parallel(td_files, labels=None, delta_t=50000, skip=0):
             # call the visualization functions
             im = vis.make_binary_histo(evs, img=im, width=width, height=height)
 
-            vis.draw_bboxes(im, boxes)
+            vis.draw_bboxes(im, boxes, labelmap=labelmap)
 
         # display the result
         cv2.imshow('out', frame)
