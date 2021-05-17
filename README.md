@@ -26,7 +26,7 @@ Files consist of 60 seconds recordings that were cut from longer recording sessi
 
 ### GEN1 Automotive Detection Dataset 
 
-Go to the [dataset presentation page](https://www.prophesee.ai/2019/12/18/atis-automotive-detection-dataset/) and download the dataset.
+Go to the [dataset presentation page](https://www.prophesee.ai/2020/01/24/prophesee-gen1-automotive-detection-dataset/) and download the dataset.
 (200G compressed and 750G uncompressed !). 
 The dataset is split into 10 archive files that can be independently used (2 for testing and validation sets each and six for training set).
 Each archive contains up to 500 files and their annotations.
