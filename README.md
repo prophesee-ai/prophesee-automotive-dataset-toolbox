@@ -31,12 +31,6 @@ Go to the [dataset presentation page](https://www.prophesee.ai/2020/01/24/prophe
 The dataset is split into 10 archive files that can be independently used (2 for testing and validation sets each and six for training set).
 Each archive contains up to 500 files and their annotations.
 
-### GEN1 N-CARS Dataset
-
-Go to the [dataset presentation page](https://www.prophesee.ai/2018/03/13/dataset-n-cars/) and download the dataset.
-The dataset is split in 7940 car and 7482 background training samples, 4396 car and 4211 background testing samples. Each example lasts 100 milliseconds.
-
-
 ## Visualization
 
 To view a few files and their annotation just use
@@ -59,7 +53,7 @@ Now you can start by running a baseline either by looking into [the last results
 
 ### DISCLAIMER: New Dataset! 
 
-To account for the new [1 Megapixel Automotive Detection Dataset](https://www.prophesee.ai/2020/11/24/automotive-megapixel-event-based-dataset/) described in our recently accepted NeurIPS submission: ["Learning to Detect Objects with a 1 Megapixel Event Camera"](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf) by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci and Amos Sironi, the format has slightly changed. 
+To account for the [1 Megapixel Automotive Detection Dataset](https://www.prophesee.ai/2020/11/24/automotive-megapixel-event-based-dataset/) described in our NeurIPS article: ["Learning to Detect Objects with a 1 Megapixel Event Camera"](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf) by Etienne Perot, Pierre de Tournemire, Davide Nitti, Jonathan Masci and Amos Sironi, the format has slightly changed. 
 Essentially `ts` has been renamed `t` in events and box events, alongside `confidence` is now `class_confidence`
 Also now, for comparison with our result inside this paper, you need to filter too small boxes and boxes appearing before 0.5s inside each recording. We provide such function
 as following example will show.
