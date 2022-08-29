@@ -1,12 +1,20 @@
+# Copyright (c) Prophesee S.A.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed
+# on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+
 """
 Defines some tools to handle events.
 In particular :
     -> defines events' types
     -> defines functions to read events from binary .dat files using numpy
     -> defines functions to write events to binary .dat files using numpy
-
-Copyright: (c) 2019-2020 Prophesee
 """
+
 from __future__ import print_function
 import os
 import sys
@@ -55,7 +63,7 @@ def _dat_transfer(dat, dtype, xyp=None):
     args :
         - dat vector as directly read from file
         - dtype _numpy dtype_ as a list of couple of field name/ type eg [('x','i4'), ('y','f2')]
-        - xyp optional tuple containing x,y,p etracted from a field '_'and untangled by bitshift and masking
+        - xyp optional tuple containing x,y,p extracted from a field '_'and untangled by bitshift and masking
     """
     variables = []
     xyp_index = -1
