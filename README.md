@@ -24,6 +24,10 @@ Go to the [dataset presentation page](https://www.prophesee.ai/2020/11/24/automo
 The dataset is split between train, test and val folders. 
 Files consist of 60 seconds recordings that were cut from longer recording sessions. Cuts from a single recording session are all in the same training split.
 
+Bounding box annotations for 7 classes (pedestrians, two-wheelers, cars, trucks, buses, traffic signs, traffic lights) are obtained in a semi automated way.
+For more details, please refer to [our NeurIPS paper](https://papers.nips.cc/paper/2020/file/c213877427b46fa96cff6c39e837ccee-Paper.pdf).
+Also note that, as explained in the paper, the official evaluation code considers only 3 classes for mAP computation (pedestrians, two-wheelers, cars).
+
 ### GEN1 Automotive Detection Dataset 
 
 Go to the [dataset presentation page](https://www.prophesee.ai/2020/01/24/prophesee-gen1-automotive-detection-dataset/) and download the dataset.
@@ -31,12 +35,16 @@ Go to the [dataset presentation page](https://www.prophesee.ai/2020/01/24/prophe
 The dataset is split into 10 archive files that can be independently used (2 for testing and validation sets each and six for training set).
 Each archive contains up to 500 files and their annotations.
 
+Please notice that compared to the 1Mpx dataset, the Gen1 dataset contains only annotations for pedestrians, and cars.
+Moreover, in contrast with the 1Mpx dataset, these labels were manually annotated.
+For more details, please refer to [our article](https://arxiv.org/abs/2001.08499)
+
 ## Visualization
 
 To view a few files and their annotation just use
     `python3 dataset_visualization.py file_1_td.dat file_2_td.dat ... file_n_dat`
-And it will display those events video in a grid. You can use it with any number of files, but a large number of them will
-make the display slow!
+And it will display those events video in a grid. You can use it with any number of files,
+but a large number of them will make the display slow!
 
 ## Reading files in python
 
@@ -60,7 +68,7 @@ as following example will show.
 
 
 If you install the [API from COCO](https://github.com/cocodataset/cocoapi) you can use the provided helper function in `metrics` to get mean average precision metrics.
-This is an usage example if you saved your detection results in the same format as the Ground Truth:
+This is a usage example if you saved your detection results in the same format as the Ground Truth:
 ```python
 import numpy as np
 from src.metrics.coco_eval import evaluate_detection
